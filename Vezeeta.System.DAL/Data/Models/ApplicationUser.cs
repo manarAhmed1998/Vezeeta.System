@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace Vezeeta.System.DAL;
 
-public class ApplicationUser
+public class ApplicationUser:IdentityUser
 {
-    public Guid Id { get; set; }
+    //hiding id of the IdentityUser
+    public new Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public Image? Image { get; set; }
     public AccountType AccountType { get; set; }

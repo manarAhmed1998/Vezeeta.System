@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Vezeeta.System.DAL;
 
-public class VezeetaContext:DbContext
+public class VezeetaContext:IdentityDbContext<ApplicationUser>
 {
     public DbSet<ApplicationUser> ApplicationUsers => Set<ApplicationUser>();
     public DbSet<Doctor> Doctors => Set<Doctor>();

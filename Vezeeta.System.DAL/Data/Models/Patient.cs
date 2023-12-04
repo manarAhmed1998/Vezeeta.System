@@ -9,6 +9,6 @@ namespace Vezeeta.System.DAL;
 public class Patient:ApplicationUser
 {
     public new AccountType AccountType= AccountType.Patient;
-
     public ApplicationUser ApplicationUser { get; set; } = null!;
+    public ICollection<Booking>? Bookings { get; set; }
 }
