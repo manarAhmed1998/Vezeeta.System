@@ -17,6 +17,7 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
     public DbSet<Specialization> Specializations =>Set<Specialization>();
     public DbSet<Appointment> Appointments =>Set<Appointment>();
     public DbSet<Time>Times =>Set<Time>();
+    public DbSet<Booking> Bookings =>Set<Booking>();
 
     //ctor for recerving options [generic if we are using A multi-tenant application ]
     public VezeetaContext(DbContextOptions<VezeetaContext> options) : base(options)
@@ -29,6 +30,19 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
         //adding to the orginal code
         base.OnModelCreating(modelBuilder);
 
+        //configuring keys
+        modelBuilder.Entity<Appointment>().HasKey(a => new { a.DoctorId, a.Day });
+
+        //modelBuilder.Entity<ApplicationUser>().
+        //    HasOne(a => a.Doctor)
+        //    .WithOne(d => d.ApplicationUser)
+        //    .HasForeignKey<Doctor>(d => d.ApplicationUserId);
+
+        //modelBuilder.Entity<ApplicationUser>().
+        // HasOne(a => a.Patient)
+        // .WithOne(p => p.ApplicationUser)
+        // .HasForeignKey<Patient>(p => p.ApplicationUserId);
+
 
         #region Seeding
 
@@ -39,8 +53,8 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
         {
             new Specialization
             {
-                Id=Guid.NewGuid(),
-                NameAr="طب الباطنة",
+                Id= Guid.NewGuid(),
+                NameAr ="طب الباطنة",
                 NameEn="Internal Medicine"
             },
             new Specialization

@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("Vezeeta_Connection_String");
 builder.Services.AddDbContext<VezeetaContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(connectionString).EnableSensitiveDataLogging());
 
 //authentiacation service
 builder.Services.AddAuthentication("default").
