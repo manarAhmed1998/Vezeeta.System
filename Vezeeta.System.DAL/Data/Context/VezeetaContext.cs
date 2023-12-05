@@ -1,14 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Vezeeta.System.DAL;
-
 public class VezeetaContext:IdentityDbContext<ApplicationUser>
 {
     public DbSet<ApplicationUser> ApplicationUsers => Set<ApplicationUser>();
@@ -31,17 +24,18 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
         base.OnModelCreating(modelBuilder);
 
         //configuring keys
-        modelBuilder.Entity<Appointment>().HasKey(a => new { a.DoctorId, a.Day });
-
-        //modelBuilder.Entity<ApplicationUser>().
-        //    HasOne(a => a.Doctor)
-        //    .WithOne(d => d.ApplicationUser)
-        //    .HasForeignKey<Doctor>(d => d.ApplicationUserId);
-
-        //modelBuilder.Entity<ApplicationUser>().
-        // HasOne(a => a.Patient)
-        // .WithOne(p => p.ApplicationUser)
-        // .HasForeignKey<Patient>(p => p.ApplicationUserId);
+        //modelBuilder.Entity<Appointment>().HasKey(a => new { a.DoctorId, a.Day });
+        modelBuilder.Entity<Time>().
+            HasMany(x => x.Bookings).
+            WithOne(x => x.Time).
+            HasForeignKey(x => x.BookingId);
+        modelBuilder.Entity<Doctor>().Property(x=>x.img).IsRequired();
+        modelBuilder.Entity<Booking>()
+            .HasOne(x => x.Patient).
+            WithMany(x => x.Bookings).
+            HasForeignKey(x => x.PatientId).
+            OnDelete(DeleteBehavior.NoAction);
+            
 
 
         #region Seeding
@@ -106,7 +100,7 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
         };
         #endregion
 
-        modelBuilder.Entity<Doctor>().HasData(specializations);
+        modelBuilder.Entity<Specialization>().HasData(specializations);
         #endregion
     }
 }

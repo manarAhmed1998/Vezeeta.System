@@ -10,11 +10,7 @@ namespace Vezeeta.System.DAL;
 public class ApplicationUser:IdentityUser
 {
     //hiding id of the IdentityUser
-    public new string Id { get; set; } = null!;
-    public string Name { get; set; } = string.Empty;
-    public Image? Image { get; set; }
+    public virtual Doctor Doctor { get; set; }= null!;
+    public virtual Patient Patient { get; set; } = null!;
     public AccountType AccountType { get; set; }
-
-    public Patient Patient { get; set; } = null!;
-    public Doctor Doctor { get; set; }= null!;
 }

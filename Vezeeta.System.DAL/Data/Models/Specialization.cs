@@ -11,9 +11,4 @@ public class Specialization
     public string NameAr { get; set; } = string.Empty;
     public string NameEn { get; set; } = string.Empty;
     public ICollection<Doctor> Doctors { set; get; } = new HashSet<Doctor>();
-
-
-
-
-
 }

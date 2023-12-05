@@ -10,6 +10,7 @@ namespace Vezeeta.System.DAL;
 
 public class Appointment { 
     //composite key configured in onModelCreating
+    public Guid Id { get; set; }
     public Guid DoctorId { get; set; }
     public Day Day { get; set; }
     public Doctor Doctor { get; set; } = null!;

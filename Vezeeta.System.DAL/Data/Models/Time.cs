@@ -11,11 +11,12 @@ namespace Vezeeta.System.DAL;
 public class Time
 {
     public Guid TimeId { get; set; }
-    [ForeignKey("DoctorId,Day")]
+    //[ForeignKey("DoctorId,Day")]
+    [ForeignKey(nameof(Appointment))]
+    public Guid AppointmentId { get; set; }
     public Guid DoctorId { get; set; }
     public Day Day { get; set; }
-    public TimeOnly TimeInHours { get; set; }
+    public DateTime TimeInHours { get; set; }
     public Appointment Appointment { get; set; } = null!;
     public ICollection<Booking>? Bookings { get; set; }
-
 }
