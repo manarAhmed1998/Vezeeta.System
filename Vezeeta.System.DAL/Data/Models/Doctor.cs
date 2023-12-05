@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Vezeeta.System.DAL.Data.DataTypes;
+using Vezeeta.System.DAL;
 
 namespace Vezeeta.System.DAL;
 public class Doctor:User

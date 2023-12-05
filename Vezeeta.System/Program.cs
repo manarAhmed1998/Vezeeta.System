@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -9,10 +10,30 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("Vezeeta_Connection_String");
 builder.Services.AddDbContext<VezeetaContext>(options =>
-    options.UseSqlServer(connectionString).EnableSensitiveDataLogging());
+    options.UseSqlServer(connectionString));
+
+
+//adding identity
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+{
+    options.Password.RequireUppercase = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = true;
+    options.Password.RequiredLength = 6;
+
+    options.User.RequireUniqueEmail = true;
+    options.Lockout.MaxFailedAccessAttempts = 5;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+}).AddEntityFrameworkStores<VezeetaContext>();
+
 
 //authentiacation service
-builder.Services.AddAuthentication("default").
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = "default";
+    options.DefaultChallengeScheme = "default";
+    }).
     AddJwtBearer("default", options =>
     {
         var secretKey = builder.Configuration.GetValue<string>("SecretKey");
@@ -28,6 +49,7 @@ builder.Services.AddAuthentication("default").
             IssuerSigningKey = key
         };
     });
+
 #endregion
 
 #region default services

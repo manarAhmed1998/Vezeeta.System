@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Vezeeta.System.DAL.Data.DataTypes;
+using Vezeeta.System.DAL;
 
 namespace Vezeeta.System.DAL;
 public class Patient:User

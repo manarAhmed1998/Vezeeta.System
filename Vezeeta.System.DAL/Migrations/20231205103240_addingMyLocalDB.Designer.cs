@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vezeeta.System.DAL;
 
@@ -11,9 +12,11 @@ using Vezeeta.System.DAL;
 namespace Vezeeta.System.DAL.Migrations
 {
     [DbContext(typeof(VezeetaContext))]
-    partial class VezeetaContextModelSnapshot : ModelSnapshot
+    [Migration("20231205103240_addingMyLocalDB")]
+    partial class addingMyLocalDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -349,55 +352,55 @@ namespace Vezeeta.System.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("eedad649-148d-4dbc-8461-1611953c6bbe"),
+                            Id = new Guid("e41e6d22-a57a-4b3b-8b9b-600aad8ae223"),
                             NameAr = "طب الباطنة",
                             NameEn = "Internal Medicine"
                         },
                         new
                         {
-                            Id = new Guid("16e38c2b-67b5-4e2a-9e28-1f89491e8d2a"),
+                            Id = new Guid("3fd5ca4a-387a-4fb4-97a7-2480a00e95ae"),
                             NameAr = "القلب والاوعية الدموية",
                             NameEn = "Cardiology"
                         },
                         new
                         {
-                            Id = new Guid("8bdb03c2-5c0f-4d3d-8406-7a025e2d0cd5"),
+                            Id = new Guid("4ecc86b7-0a34-4647-a79d-670454ff6748"),
                             NameAr = "نساء وتوليد",
                             NameEn = "Obstetrics and Gynecology"
                         },
                         new
                         {
-                            Id = new Guid("08e5edc0-8633-46a9-9808-0eda2e94f0af"),
+                            Id = new Guid("8c9f4ed6-baeb-48de-b08b-4c96ce5fe195"),
                             NameAr = "طب العيون",
                             NameEn = "Ophthalmology"
                         },
                         new
                         {
-                            Id = new Guid("ba8a0c90-ffd7-4d74-8b70-4225f19f2706"),
+                            Id = new Guid("e13dd515-5c96-42cd-abec-a481e5a283f1"),
                             NameAr = "طب اطفال",
                             NameEn = "Pediatrics"
                         },
                         new
                         {
-                            Id = new Guid("636cbf8a-129f-451a-85a7-b2c060870582"),
+                            Id = new Guid("b17b9759-5707-49d5-8433-f6c8d3d4c1e1"),
                             NameAr = "طب الاعصاب",
                             NameEn = "Neurology"
                         },
                         new
                         {
-                            Id = new Guid("b280bf89-7696-40f5-aa88-3517485555d4"),
+                            Id = new Guid("7d7ec542-1147-474d-84ef-8d496c043418"),
                             NameAr = "طب الاورام",
                             NameEn = "Oncology"
                         },
                         new
                         {
-                            Id = new Guid("a7f46a05-4692-4ae4-b62d-36035804c1e2"),
+                            Id = new Guid("9054cde9-4941-4bde-8fd1-924eda3616e3"),
                             NameAr = "المسالك البولية",
                             NameEn = "Urology"
                         },
                         new
                         {
-                            Id = new Guid("78d56622-30f6-4b48-8ba4-ec5bd63b19a8"),
+                            Id = new Guid("ece78a87-bd56-4c92-829d-e19bff72fa46"),
                             NameAr = "جلدية",
                             NameEn = "Dermatology"
                         });

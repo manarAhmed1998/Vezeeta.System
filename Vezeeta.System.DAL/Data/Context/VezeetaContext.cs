@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 namespace Vezeeta.System.DAL;
 public class VezeetaContext:IdentityDbContext<ApplicationUser>
 {
-    public DbSet<ApplicationUser> ApplicationUsers => Set<ApplicationUser>();
     public DbSet<Doctor> Doctors => Set<Doctor>();
     public DbSet<Patient> Patients => Set<Patient>();
     public DbSet<Specialization> Specializations =>Set<Specialization>();
@@ -15,7 +14,6 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
     //ctor for recerving options [generic if we are using A multi-tenant application ]
     public VezeetaContext(DbContextOptions<VezeetaContext> options) : base(options)
     {
-
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,7 +27,7 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
             HasMany(x => x.Bookings).
             WithOne(x => x.Time).
             HasForeignKey(x => x.BookingId);
-        modelBuilder.Entity<Doctor>().Property(x=>x.img).IsRequired();
+        modelBuilder.Entity<Doctor>().Property(x=>x.Img).IsRequired();
         modelBuilder.Entity<Booking>()
             .HasOne(x => x.Patient).
             WithMany(x => x.Bookings).
