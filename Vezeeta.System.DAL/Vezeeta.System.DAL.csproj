@@ -20,4 +20,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repos\Images\" />
+    <Folder Include="Repos\Bookings\" />
+    <Folder Include="Repos\Times\" />
+  </ItemGroup>
+
 </Project>

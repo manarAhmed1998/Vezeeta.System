@@ -2,15 +2,23 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Vezeeta.System.BL;
 using Vezeeta.System.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 
 #region Services
 
+//configure context service in the Dependency injection container
 var connectionString = builder.Configuration.GetConnectionString("Vezeeta_Connection_String");
-builder.Services.AddDbContext<VezeetaContext>(options =>
+builder.Services.AddDbContext<VezeetaContext>(options =>  
     options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<IDoctorsRepo, DoctorsRepo>();
+builder.Services.AddScoped<IPatientsRepo, PatientsRepo>();
+builder.Services.AddScoped<IDoctorsManager, DoctorsManager>();
+builder.Services.AddScoped<IPatientsManager, PatientsManager>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
 //adding identity

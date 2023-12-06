@@ -12,4 +12,13 @@
     <ProjectReference Include="..\Vezeeta.System.DAL\Vezeeta.System.DAL.csproj" />
   </ItemGroup>
 
+
+
+  <ItemGroup>
+    <Folder Include="DTOs\Bookings\" />
+    <Folder Include="DTOs\Doctors\" />
+    <Folder Include="DTOs\Times\" />
+    <Folder Include="DTOs\Patients\" />
+  </ItemGroup>
+
 </Project>
