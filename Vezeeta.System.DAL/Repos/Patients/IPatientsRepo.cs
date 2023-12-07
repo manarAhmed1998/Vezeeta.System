@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace Vezeeta.System.DAL;
 
-public interface IPatientsRepo
+public interface IPatientsRepo : IGenericRepo<Patient>
 {
 }

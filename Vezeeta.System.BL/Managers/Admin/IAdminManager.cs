@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Vezeeta.System.BL.Managers.DTOs;
 
-namespace Vezeeta.System.BL;
-
-public interface IDoctorsManager
+namespace Vezeeta.System.BL.Managers.Admin
 {
+    public interface IAdminManager
+    {
+        Task<bool> AddDoctor(RegisterDTO credentials);
+    }
 }

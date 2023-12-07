@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Vezeeta.System.BL;
+using Vezeeta.System.BL.Managers.Admin;
+using Vezeeta.System.BL.Managers.LoginService;
 using Vezeeta.System.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,8 +18,10 @@ builder.Services.AddDbContext<VezeetaContext>(options =>
 
 builder.Services.AddScoped<IDoctorsRepo, DoctorsRepo>();
 builder.Services.AddScoped<IPatientsRepo, PatientsRepo>();
+builder.Services.AddScoped<IAdminManager, AdminManager>();
 builder.Services.AddScoped<IDoctorsManager, DoctorsManager>();
 builder.Services.AddScoped<IPatientsManager, PatientsManager>();
+builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 

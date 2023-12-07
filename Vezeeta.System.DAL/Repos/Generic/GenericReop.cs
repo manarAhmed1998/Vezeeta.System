@@ -16,9 +16,19 @@ public class GenericReop<T> : IGenericRepo<T> where T : class
         _context = context;
     }
 
+    public void Add(T obj)
+    {
+        _context.Set<T>().Add(obj);
+    }
+
     //our generic methods
     public IEnumerable<T> GetAll()
     {
         return _context.Set<T>().AsNoTracking();
+    }
+
+    public void Remove(T obj)
+    {
+        throw new NotImplementedException();
     }
 }

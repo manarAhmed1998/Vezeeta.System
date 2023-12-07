@@ -28,4 +28,9 @@
 	  <ProjectReference Include="..\Vezeeta.System.BL\Vezeeta.System.BL.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="DTOs\Authentication\" />
+	  <Folder Include="DTOs\Token\" />
+	</ItemGroup>
+
 </Project>

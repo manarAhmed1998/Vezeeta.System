@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repos\Images\**" />
+    <EmbeddedResource Remove="Repos\Images\**" />
+    <None Remove="Repos\Images\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
 
@@ -21,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repos\Images\" />
     <Folder Include="Repos\Bookings\" />
     <Folder Include="Repos\Times\" />
   </ItemGroup>
