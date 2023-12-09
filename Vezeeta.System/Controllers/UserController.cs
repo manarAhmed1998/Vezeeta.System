@@ -12,6 +12,8 @@ using Vezeeta.System.DAL;
 
 namespace Vezeeta.System.APIs.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class UserController : Controller
     {
         private readonly IConfiguration _configuration;

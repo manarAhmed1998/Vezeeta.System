@@ -11,6 +11,7 @@ namespace Vezeeta.System.DAL;
 public class UnitOfWork : IUnitOfWork
 {
     private readonly VezeetaContext _context;
+
     private IDbContextTransaction _transaction;
     public IDoctorsRepo DoctorsRepo { get; }
     public IPatientsRepo PatientsRepo { get; }
