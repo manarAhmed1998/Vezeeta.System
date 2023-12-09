@@ -33,6 +33,9 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
             WithMany(x => x.Bookings).
             HasForeignKey(x => x.PatientId).
             OnDelete(DeleteBehavior.NoAction);
+        modelBuilder.Entity<Appointment>().
+            HasIndex(a => new { a.DoctorId, a.Day }).
+            IsUnique();
             
 
 

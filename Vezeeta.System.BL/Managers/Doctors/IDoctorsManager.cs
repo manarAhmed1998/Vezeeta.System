@@ -9,4 +9,5 @@ namespace Vezeeta.System.BL;
 
 public interface IDoctorsManager
 {
+     bool AddSetting(Guid Id, AddSettingDTO settings);
 }

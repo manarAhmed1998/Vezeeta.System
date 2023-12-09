@@ -1,10 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+using Vezeeta.System.DAL.Repos.Appointments;
+using Vezeeta.System.DAL.Repos.Times;
 
 namespace Vezeeta.System.DAL;
 
@@ -14,14 +10,21 @@ public class UnitOfWork : IUnitOfWork
     private IDbContextTransaction _transaction;
     public IDoctorsRepo DoctorsRepo { get; }
     public IPatientsRepo PatientsRepo { get; }
+    public IAppointmentsRepo AppointmentsRepo { get; }
+    public ITimesRepo TimesRepo { get; }
 
     public UnitOfWork(VezeetaContext context,
         IDoctorsRepo doctorsRepo,
-        IPatientsRepo patientsRepo)
+        IPatientsRepo patientsRepo,
+        IAppointmentsRepo appointmentsRepo,
+        ITimesRepo timesRepo
+        )
     {
         _context = context;
         DoctorsRepo = doctorsRepo;
         PatientsRepo = patientsRepo;
+        AppointmentsRepo = appointmentsRepo;
+        TimesRepo = timesRepo;
     }
 
 

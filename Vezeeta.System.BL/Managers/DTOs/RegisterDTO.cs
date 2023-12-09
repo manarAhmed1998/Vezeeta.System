@@ -12,7 +12,6 @@ namespace Vezeeta.System.BL.Managers.DTOs
         public string Email { get; init; } = null!;
         public string Password { get; init; } = null!;
         public string Name { get; init; } = null!;
-        public int Price { get; init; } 
         public string Img { get; init; } = null!;
         public Guid SpecializationId {  get; init; }
     }

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using Vezeeta.System.BL;
 using Vezeeta.System.BL.Managers.DTOs;
 using Vezeeta.System.BL.Managers.LoginService;
+using Vezeeta.System.DAL;
 
 namespace Vezeeta.System.APIs.Controllers
 {
@@ -10,11 +12,12 @@ namespace Vezeeta.System.APIs.Controllers
     [ApiController]
     public class DoctorsController : ControllerBase
     {
+
         private readonly IDoctorsManager _manager;
         private readonly ILoginService _loginService;
-
         public DoctorsController(IDoctorsManager manager,
-            ILoginService loginService)
+            ILoginService loginService
+            )
         {
             _manager = manager;
             _loginService = loginService;
@@ -26,6 +29,12 @@ namespace Vezeeta.System.APIs.Controllers
             var result = await _loginService.Login(credentials);
             if (result is null)
                 return Unauthorized("Username or password isn't correct");
+            return Ok(result);
+        }
+        [HttpPost("AddSetting/Id")]
+        public ActionResult<bool> AddSetting(Guid Id, [FromBody]AddSettingDTO settings)
+        {
+            var result = _manager.AddSetting(Id, settings);
             return Ok(result);
         }
     }

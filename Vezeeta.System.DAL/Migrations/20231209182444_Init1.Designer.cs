@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vezeeta.System.DAL;
 
@@ -11,9 +12,11 @@ using Vezeeta.System.DAL;
 namespace Vezeeta.System.DAL.Migrations
 {
     [DbContext(typeof(VezeetaContext))]
-    partial class VezeetaContextModelSnapshot : ModelSnapshot
+    [Migration("20231209182444_Init1")]
+    partial class Init1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -237,8 +240,7 @@ namespace Vezeeta.System.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DoctorId", "Day")
-                        .IsUnique();
+                    b.HasIndex("DoctorId");
 
                     b.ToTable("Appointments");
                 });
@@ -284,6 +286,9 @@ namespace Vezeeta.System.DAL.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("SpecializationId")
                         .HasColumnType("uniqueidentifier");
@@ -347,55 +352,55 @@ namespace Vezeeta.System.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("2cef488f-2824-4016-b4b2-d8c7065d2f7b"),
+                            Id = new Guid("f1a92d10-13c6-48cb-8d0b-26ea110d316f"),
                             NameAr = "طب الباطنة",
                             NameEn = "Internal Medicine"
                         },
                         new
                         {
-                            Id = new Guid("a8a4ca02-55cb-493a-a74c-5aa2a1ce7009"),
+                            Id = new Guid("64f0a7eb-ac8b-4d28-afbb-95079183968d"),
                             NameAr = "القلب والاوعية الدموية",
                             NameEn = "Cardiology"
                         },
                         new
                         {
-                            Id = new Guid("4892acfe-08c5-43e6-9ee0-7e56b6da7158"),
+                            Id = new Guid("3b85c78d-f8c6-4b88-b3aa-c51326a69b37"),
                             NameAr = "نساء وتوليد",
                             NameEn = "Obstetrics and Gynecology"
                         },
                         new
                         {
-                            Id = new Guid("0e75a5f0-6991-4084-96f1-b1f1a9dfaa11"),
+                            Id = new Guid("0284db6c-f8e4-4c71-8bc2-56e7a202862f"),
                             NameAr = "طب العيون",
                             NameEn = "Ophthalmology"
                         },
                         new
                         {
-                            Id = new Guid("16fbb828-611b-47d9-b2d5-f927fd86cd13"),
+                            Id = new Guid("a7c71a90-4c89-43fc-a996-bdcefd54c9ca"),
                             NameAr = "طب اطفال",
                             NameEn = "Pediatrics"
                         },
                         new
                         {
-                            Id = new Guid("17a4a4f3-5e40-4729-a836-a3b19abbe2b5"),
+                            Id = new Guid("4a379e62-73f1-4aee-987f-1ba641aaedcc"),
                             NameAr = "طب الاعصاب",
                             NameEn = "Neurology"
                         },
                         new
                         {
-                            Id = new Guid("2c00c4bf-a319-4b80-816d-c6104885df7a"),
+                            Id = new Guid("bb145f6c-8418-41a3-ac75-bfc1767f7c7a"),
                             NameAr = "طب الاورام",
                             NameEn = "Oncology"
                         },
                         new
                         {
-                            Id = new Guid("5c53542d-3205-4f99-822d-fde2e2879058"),
+                            Id = new Guid("474d06c8-92a4-47e0-b6e3-d6931bc52130"),
                             NameAr = "المسالك البولية",
                             NameEn = "Urology"
                         },
                         new
                         {
-                            Id = new Guid("32757065-c074-4bbe-8ec2-81bfe19ef19a"),
+                            Id = new Guid("c0e389f3-a416-4b54-a90a-5d726f16622e"),
                             NameAr = "جلدية",
                             NameEn = "Dermatology"
                         });

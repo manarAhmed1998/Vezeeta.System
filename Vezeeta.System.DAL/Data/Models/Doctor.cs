@@ -15,7 +15,6 @@ public class Doctor:User
     public string ApplicationUserId { get; set; } = null!;
     [ForeignKey(nameof(Specialization))]
     public Guid SpecializationId { get; set; }
-    public int Price { get; set; }
     public Specialization Specialization { get; set; } = null!;
     public ICollection<Appointment> Appointments { get; set; } = null!;
 }

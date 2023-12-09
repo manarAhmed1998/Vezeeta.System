@@ -16,7 +16,7 @@ public class Time
     public Guid AppointmentId { get; set; }
     public Guid DoctorId { get; set; }
     public Day Day { get; set; }
-    public DateTime TimeInHours { get; set; }
+    public string TimeInHours { get; set; }
     public Appointment Appointment { get; set; } = null!;
     public ICollection<Booking>? Bookings { get; set; }
 }

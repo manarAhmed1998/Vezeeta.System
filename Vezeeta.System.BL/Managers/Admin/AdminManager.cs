@@ -59,7 +59,6 @@ namespace Vezeeta.System.BL.Managers.Admin
                         SpecializationId = credentials.SpecializationId,
                         Img = credentials.Img,
                         Name = credentials.Name,
-                        Price = credentials.Price,
                     };
 
                     // Add Doctor to the repository

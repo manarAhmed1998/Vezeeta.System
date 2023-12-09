@@ -7,8 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Repos\Bookings\**" />
     <Compile Remove="Repos\Images\**" />
+    <EmbeddedResource Remove="Repos\Bookings\**" />
     <EmbeddedResource Remove="Repos\Images\**" />
+    <None Remove="Repos\Bookings\**" />
     <None Remove="Repos\Images\**" />
   </ItemGroup>
 
@@ -24,11 +27,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Repos\Bookings\" />
-    <Folder Include="Repos\Times\" />
   </ItemGroup>
 
 </Project>

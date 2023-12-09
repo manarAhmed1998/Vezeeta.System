@@ -6,6 +6,8 @@ using Vezeeta.System.BL;
 using Vezeeta.System.BL.Managers.Admin;
 using Vezeeta.System.BL.Managers.LoginService;
 using Vezeeta.System.DAL;
+using Vezeeta.System.DAL.Repos.Appointments;
+using Vezeeta.System.DAL.Repos.Times;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +23,8 @@ builder.Services.AddScoped<IPatientsRepo, PatientsRepo>();
 builder.Services.AddScoped<IAdminManager, AdminManager>();
 builder.Services.AddScoped<IDoctorsManager, DoctorsManager>();
 builder.Services.AddScoped<IPatientsManager, PatientsManager>();
+builder.Services.AddScoped<IAppointmentsRepo, AppointmentsRepo>();
+builder.Services.AddScoped<ITimesRepo, TimesRepo>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
