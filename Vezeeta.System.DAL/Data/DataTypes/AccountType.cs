@@ -8,5 +8,7 @@ namespace Vezeeta.System.DAL;
 
 public enum AccountType
 {
-    Doctor,Patient,Admin
+    Doctor=0,
+    Patient=1,
+    Admin=2
 }

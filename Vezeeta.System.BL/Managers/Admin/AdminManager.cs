@@ -47,7 +47,8 @@ namespace Vezeeta.System.BL.Managers.Admin
                     var userClaims = new List<Claim>
         {
             new Claim(ClaimTypes.NameIdentifier, user.UserName),
-            new Claim(ClaimTypes.Email, user.Email)
+            new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.Role,user.AccountType.ToString())
         };
 
                     await _userManager.AddClaimsAsync(user, userClaims);

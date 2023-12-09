@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
+using System.Drawing;
+using System.Security.Claims;
 using System.Text;
 using Vezeeta.System.BL;
 using Vezeeta.System.BL.Managers.Admin;
@@ -10,7 +12,7 @@ using Vezeeta.System.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 
-#region Services
+#region Services & context
 
 //configure context service in the Dependency injection container
 var connectionString = builder.Configuration.GetConnectionString("Vezeeta_Connection_String");
@@ -24,9 +26,9 @@ builder.Services.AddScoped<IDoctorsManager, DoctorsManager>();
 builder.Services.AddScoped<IPatientsManager, PatientsManager>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+#endregion region
 
-
-//adding identity
+#region ASP identity
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
@@ -39,9 +41,9 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Lockout.MaxFailedAccessAttempts = 5;
     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
 }).AddEntityFrameworkStores<VezeetaContext>();
+#endregion
 
-
-//authentiacation service
+#region authentiacation
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = "default";
@@ -64,6 +66,19 @@ builder.Services.AddAuthentication(options =>
     });
 
 #endregion
+
+#region Authorization
+//admin,doctor,patient
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Doctor", policy =>
+    policy.RequireClaim(ClaimTypes.Role, "Doctor"));
+    options.AddPolicy("Admin", policy =>
+    policy.RequireClaim(ClaimTypes.Role, "Admin"));
+    options.AddPolicy("Patient", policy =>
+    policy.RequireClaim(ClaimTypes.Role, "Patient"));
+});
+#endregion 
 
 #region default services
 builder.Services.AddControllers();
