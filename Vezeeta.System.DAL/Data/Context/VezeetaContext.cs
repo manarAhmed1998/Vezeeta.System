@@ -10,6 +10,8 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
     public DbSet<Appointment> Appointments =>Set<Appointment>();
     public DbSet<Time>Times =>Set<Time>();
     public DbSet<Booking> Bookings =>Set<Booking>();
+    public DbSet<Coupon> Coupons =>Set<Coupon>();
+    public DbSet<PatientCoupon>PatientCoupons =>Set<PatientCoupon>();
 
     //ctor for recerving options [generic if we are using A multi-tenant application ]
     public VezeetaContext(DbContextOptions<VezeetaContext> options) : base(options)
@@ -36,8 +38,20 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
         modelBuilder.Entity<Appointment>().
             HasIndex(a => new { a.DoctorId, a.Day }).
             IsUnique();
-            
 
+        // Configure many-to-many relationship
+        modelBuilder.Entity<PatientCoupon>()
+            .HasKey(pc => new { pc.PatientId, pc.CouponId });
+
+        modelBuilder.Entity<PatientCoupon>()
+            .HasOne(pc => pc.Patient)
+            .WithMany(p => p.PatientCoupons)
+            .HasForeignKey(pc => pc.PatientId);
+
+        modelBuilder.Entity<PatientCoupon>()
+            .HasOne(pc => pc.Coupon)
+            .WithMany(c => c.PatientCoupons)
+            .HasForeignKey(pc => pc.CouponId);
 
         #region Seeding
 
