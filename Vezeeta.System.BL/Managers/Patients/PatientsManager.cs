@@ -5,7 +5,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Vezeeta.System.BL.Managers.DTOs;
+using Vezeeta.System.BL.DTOs.Doctors;
+using Vezeeta.System.BL.DTOs.Patients;
 using Vezeeta.System.DAL;
 
 namespace Vezeeta.System.BL;
@@ -14,6 +15,7 @@ public class PatientsManager:IPatientsManager
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly IDoctorsRepo _doctorsRepo;
 
     public PatientsManager(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
     {
@@ -21,16 +23,7 @@ public class PatientsManager:IPatientsManager
         _userManager = userManager;
     }
 
-    public IEnumerable<DoctorReadDTO> GetDoctors()
-    {
-        var doctorsFromDb=_unitOfWork.DoctorsRepo.GetAll();
-        return doctorsFromDb.Select(doctor => new DoctorReadDTO
-        {
-            Name = doctor.Name,
-            Img= doctor.Img,
-            Gender = doctor.Gender,
-        });
-    }
+    
     public async Task<bool> AddPatient(AddPatientDTO credentials)
     {
         var user = new ApplicationUser
@@ -90,4 +83,5 @@ public class PatientsManager:IPatientsManager
             }
         }
     }
+
 }

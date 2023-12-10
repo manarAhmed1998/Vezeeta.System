@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Vezeeta.System.BL.Managers.DTOs;
+using Vezeeta.System.BL.DTOs.Admin;
 
-namespace Vezeeta.System.BL.Managers.LoginService
+namespace Vezeeta.System.BL.Services.LoginService
 {
     public interface ILoginService
     {

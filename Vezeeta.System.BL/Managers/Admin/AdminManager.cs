@@ -5,7 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Vezeeta.System.BL.Managers.DTOs;
+using Vezeeta.System.BL.DTOs.Admin;
 using Vezeeta.System.DAL;
 
 namespace Vezeeta.System.BL.Managers.Admin
@@ -27,7 +27,7 @@ namespace Vezeeta.System.BL.Managers.Admin
             {
                 UserName = credentials.UserName,
                 Email = credentials.Email,
-                AccountType = AccountType.Doctor
+                AccountType = AccountType.Doctor,
             };
 
             using (var transaction = _unitOfWork.BeginTransaction())
@@ -60,6 +60,7 @@ namespace Vezeeta.System.BL.Managers.Admin
                         SpecializationId = credentials.SpecializationId,
                         Img = credentials.Img,
                         Name = credentials.Name,
+                        Gender= credentials.Gender,
                     };
 
                     // Add Doctor to the repository

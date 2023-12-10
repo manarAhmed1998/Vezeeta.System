@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Vezeeta.System.DAL;
 
-namespace Vezeeta.System.BL.Managers.DTOs
+namespace Vezeeta.System.BL.DTOs.Doctors
 {
     public class DayScheduleDTO
     {

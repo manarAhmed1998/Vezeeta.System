@@ -7,7 +7,7 @@ using System.Security.Claims;
 using System.Text;
 using Vezeeta.System.BL;
 using Vezeeta.System.BL.Managers.Admin;
-using Vezeeta.System.BL.Managers.LoginService;
+using Vezeeta.System.BL.Services.LoginService;
 using Vezeeta.System.DAL;
 using Vezeeta.System.DAL.Repos.Appointments;
 using Vezeeta.System.DAL.Repos.Times;

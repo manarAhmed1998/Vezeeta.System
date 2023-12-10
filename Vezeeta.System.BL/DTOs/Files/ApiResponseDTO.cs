@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vezeeta.System.BL.Managers.DTOs
+namespace Vezeeta.System.BL.DTOs.Files
 {
     public class ApiResponseDTO<T>
     {

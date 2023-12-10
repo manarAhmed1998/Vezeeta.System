@@ -1,4 +1,4 @@
-﻿namespace Vezeeta.System.APIs;
+﻿namespace Vezeeta.System.BL.DTOs.Files;
 
 public class UploadFileDTO
 {

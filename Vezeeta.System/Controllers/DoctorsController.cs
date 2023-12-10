@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Vezeeta.System.BL;
-using Vezeeta.System.BL.Managers.DTOs;
-using Vezeeta.System.BL.Managers.LoginService;
+using Vezeeta.System.BL.DTOs.Admin;
+using Vezeeta.System.BL.DTOs.Doctors;
+using Vezeeta.System.BL.Services.LoginService;
 using Vezeeta.System.DAL;
 
 namespace Vezeeta.System.APIs.Controllers

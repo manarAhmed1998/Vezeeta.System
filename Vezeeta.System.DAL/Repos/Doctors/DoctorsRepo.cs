@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,14 @@ public class DoctorsRepo : GenericReop<Doctor>,IDoctorsRepo
     public DoctorsRepo(VezeetaContext context):base(context)
     {
          _context = context;
-    } 
+    }
+
+    public IEnumerable<Doctor> GetAllDoctorsWithSettings()
+    {
+        return _context.Doctors
+            .Include(d => d.Appointments)
+            .ThenInclude(a => a.Day)
+            .Include(d => d.Appointments)
+            .ThenInclude(a => a.Times);
+    }
 }

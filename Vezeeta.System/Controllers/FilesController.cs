@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Vezeeta.System.BL.DTOs.Files;
 
 namespace Vezeeta.System.APIs.Controllers
 {

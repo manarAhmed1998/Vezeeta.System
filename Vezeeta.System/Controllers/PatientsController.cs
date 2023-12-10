@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Vezeeta.System.BL;
-using Vezeeta.System.BL.Managers.DTOs;
-using Vezeeta.System.BL.Managers.LoginService;
+using Vezeeta.System.BL.DTOs.Admin;
+using Vezeeta.System.BL.DTOs.Doctors;
+using Vezeeta.System.BL.DTOs.Patients;
+using Vezeeta.System.BL.Services.LoginService;
 
 namespace Vezeeta.System.APIs.Controllers
 {
@@ -12,8 +14,11 @@ namespace Vezeeta.System.APIs.Controllers
     {
         private readonly ILoginService _loginService;
         private readonly IPatientsManager _patientsManager;
+        private readonly IDoctorsManager _doctorsManager;
 
-        public PatientsController(ILoginService loginService, IPatientsManager patientsManager)
+        public PatientsController(ILoginService loginService,
+            IPatientsManager patientsManager,
+            IDoctorsManager doctorsManager)
         {
             _loginService = loginService;
             _patientsManager = patientsManager;
@@ -33,10 +38,10 @@ namespace Vezeeta.System.APIs.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetDoctors")]
-        public ActionResult<List<DoctorReadDTO>>GetAllDoctors()
+        [HttpGet("GetDoctorsWithSettings")]
+        public ActionResult<List<DoctorWithSettingsReadDTO>>GetAllDoctors()
         {
-            return _patientsManager.GetDoctors().ToList();
+            return _doctorsManager.GetDoctorsWithSettings().ToList();
         }
     }
 }
