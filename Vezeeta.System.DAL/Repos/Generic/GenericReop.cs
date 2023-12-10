@@ -27,6 +27,11 @@ public class GenericReop<T> : IGenericRepo<T> where T : class
         return _context.Set<T>().AsNoTracking();
     }
 
+    public T GetById(Guid Id)
+    {
+        return _context.Set<T>().Find(Id);
+    }
+
     public void Remove(T obj)
     {
         throw new NotImplementedException();

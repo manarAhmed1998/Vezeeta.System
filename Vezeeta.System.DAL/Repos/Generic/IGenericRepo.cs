@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace Vezeeta.System.DAL;
 
-public interface IGenericRepo<T>where T : class
+public interface IGenericRepo<T> where T : class
 {
     IEnumerable<T> GetAll();
     void Add(T obj);
     void Remove(T obj);
+    T GetById(Guid Id);
 }

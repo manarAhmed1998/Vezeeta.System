@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace Vezeeta.System.DAL;
 public class VezeetaContext:IdentityDbContext<ApplicationUser>
@@ -12,15 +14,24 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
     public DbSet<Booking> Bookings =>Set<Booking>();
 
     //ctor for recerving options [generic if we are using A multi-tenant application ]
+    private readonly UserManager<ApplicationUser> _manager;
     public VezeetaContext(DbContextOptions<VezeetaContext> options) : base(options)
     {
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        var hasher = new PasswordHasher<ApplicationUser>();
         //adding to the orginal code
         base.OnModelCreating(modelBuilder);
-
+        var admin = new ApplicationUser
+        {
+            AccountType = AccountType.Admin,
+            Email = "admin@gmail.com",
+            UserName = "admin",
+        };
+        admin.PasswordHash = hasher.HashPassword(admin, "Admin@123");
+        modelBuilder.Entity<ApplicationUser>().HasData(admin);
         //configuring keys
         //modelBuilder.Entity<Appointment>().HasKey(a => new { a.DoctorId, a.Day });
         modelBuilder.Entity<Time>().
@@ -100,8 +111,8 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
             }
         };
         #endregion
-
         modelBuilder.Entity<Specialization>().HasData(specializations);
+        
         #endregion
     }
 }

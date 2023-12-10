@@ -178,7 +178,7 @@ namespace Vezeeta.System.DAL.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    img = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Img = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AccountType = table.Column<int>(type: "int", nullable: false)
                 },
@@ -200,8 +200,7 @@ namespace Vezeeta.System.DAL.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     SpecializationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Price = table.Column<int>(type: "int", nullable: false),
-                    img = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Img = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     AccountType = table.Column<int>(type: "int", nullable: false)
                 },
@@ -249,7 +248,7 @@ namespace Vezeeta.System.DAL.Migrations
                     AppointmentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Day = table.Column<int>(type: "int", nullable: false),
-                    TimeInHours = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    TimeInHours = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -288,25 +287,31 @@ namespace Vezeeta.System.DAL.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "AccountType", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "89c8627b-f6f2-4fba-bee6-5b38b2f085bc", 0, 2, "0372a19c-b1b5-4050-9635-9fe6f0b1e0b6", "admin@gmail.com", false, false, null, null, null, "AQAAAAIAAYagAAAAEL8PUIxoqXOTqu8jD/njrIQ7YvsGXe9+c11n1KIluhiKqCZ7w9zPxwdh8UHY+P0MGQ==", null, false, "2c169ce2-1f0f-4c51-bdfd-3e1f4f28456b", false, "admin" });
+
+            migrationBuilder.InsertData(
                 table: "Specializations",
                 columns: new[] { "Id", "NameAr", "NameEn" },
                 values: new object[,]
                 {
-                    { new Guid("1b08f437-7e1f-43a0-b556-4b1523c8131f"), "طب العيون", "Ophthalmology" },
-                    { new Guid("42759fea-a5e3-463b-addc-f81302afa111"), "طب الباطنة", "Internal Medicine" },
-                    { new Guid("50da526a-86d8-4497-915c-499e4996af10"), "طب الاورام", "Oncology" },
-                    { new Guid("669e2593-20bb-4ce3-88bd-61704a8ec179"), "طب اطفال", "Pediatrics" },
-                    { new Guid("8cd7f1c5-945f-42d5-8cb7-f241e36d3a8e"), "نساء وتوليد", "Obstetrics and Gynecology" },
-                    { new Guid("8e28bee7-0f15-457b-b479-18f085cdac57"), "القلب والاوعية الدموية", "Cardiology" },
-                    { new Guid("97a95556-3789-44f6-8e83-e8df272136ba"), "جلدية", "Dermatology" },
-                    { new Guid("c31ac45a-c9a5-42ee-9404-70b90fc6f3df"), "المسالك البولية", "Urology" },
-                    { new Guid("ef335ffd-8289-4238-a205-cfe48c2c1c77"), "طب الاعصاب", "Neurology" }
+                    { new Guid("121122c6-8e62-4390-9fc0-b59c969291db"), "طب الاورام", "Oncology" },
+                    { new Guid("249c5944-6233-4677-be1f-7f5cd1849e80"), "طب الباطنة", "Internal Medicine" },
+                    { new Guid("2a0dac61-5c29-419e-bbf6-7e7e65037b45"), "نساء وتوليد", "Obstetrics and Gynecology" },
+                    { new Guid("34162cd9-e86a-474a-ae0e-f21d42aaea21"), "المسالك البولية", "Urology" },
+                    { new Guid("6ace6a84-cbab-4f1e-b134-4032915ea9b3"), "طب اطفال", "Pediatrics" },
+                    { new Guid("8d096843-cb36-43b5-af02-db19a5461e45"), "القلب والاوعية الدموية", "Cardiology" },
+                    { new Guid("bf069c11-6448-4165-b287-a99dc3e1a8fd"), "جلدية", "Dermatology" },
+                    { new Guid("d3c6c631-71b1-440d-b0b1-3959bf1ee9aa"), "طب العيون", "Ophthalmology" },
+                    { new Guid("e32fb559-660c-41f9-b60f-99d2dfe50b14"), "طب الاعصاب", "Neurology" }
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Appointments_DoctorId",
+                name: "IX_Appointments_DoctorId_Day",
                 table: "Appointments",
-                column: "DoctorId");
+                columns: new[] { "DoctorId", "Day" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
