@@ -12,7 +12,7 @@ using Vezeeta.System.DAL;
 namespace Vezeeta.System.DAL.Migrations
 {
     [DbContext(typeof(VezeetaContext))]
-    [Migration("20231210000456_Init")]
+    [Migration("20231210182311_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -100,6 +100,29 @@ namespace Vezeeta.System.DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AspNetUserClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier",
+                            ClaimValue = "admin",
+                            UserId = "d7d1c852-64c2-4b46-b430-113e0801bad6"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+                            ClaimValue = "Admin",
+                            UserId = "d7d1c852-64c2-4b46-b430-113e0801bad6"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
+                            ClaimValue = "admin@gmail.com",
+                            UserId = "d7d1c852-64c2-4b46-b430-113e0801bad6"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -228,16 +251,18 @@ namespace Vezeeta.System.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "89c8627b-f6f2-4fba-bee6-5b38b2f085bc",
+                            Id = "d7d1c852-64c2-4b46-b430-113e0801bad6",
                             AccessFailedCount = 0,
                             AccountType = 2,
-                            ConcurrencyStamp = "0372a19c-b1b5-4050-9635-9fe6f0b1e0b6",
+                            ConcurrencyStamp = "56f6f2d4-e156-4bb3-8bdf-a4572ba684af",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEL8PUIxoqXOTqu8jD/njrIQ7YvsGXe9+c11n1KIluhiKqCZ7w9zPxwdh8UHY+P0MGQ==",
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEE1F2GUlDVchZVjp0lKQoqdoxGc44Fu8npr9r4N/4X6woWsB8NOQmVbojfkibx4SzA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2c169ce2-1f0f-4c51-bdfd-3e1f4f28456b",
+                            SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -284,6 +309,30 @@ namespace Vezeeta.System.DAL.Migrations
                     b.ToTable("Bookings");
                 });
 
+            modelBuilder.Entity("Vezeeta.System.DAL.Coupon", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DiscountCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DiscountType")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("Value")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Coupons");
+                });
+
             modelBuilder.Entity("Vezeeta.System.DAL.Doctor", b =>
                 {
                     b.Property<Guid>("Id")
@@ -297,11 +346,22 @@ namespace Vezeeta.System.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
                     b.Property<string>("Img")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -331,6 +391,9 @@ namespace Vezeeta.System.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<int>("Gender")
+                        .HasColumnType("int");
+
                     b.Property<string>("Img")
                         .HasColumnType("nvarchar(max)");
 
@@ -344,6 +407,21 @@ namespace Vezeeta.System.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("Patients");
+                });
+
+            modelBuilder.Entity("Vezeeta.System.DAL.PatientCoupon", b =>
+                {
+                    b.Property<Guid>("PatientId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CouponId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("PatientId", "CouponId");
+
+                    b.HasIndex("CouponId");
+
+                    b.ToTable("PatientCoupons");
                 });
 
             modelBuilder.Entity("Vezeeta.System.DAL.Specialization", b =>
@@ -367,55 +445,55 @@ namespace Vezeeta.System.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("249c5944-6233-4677-be1f-7f5cd1849e80"),
+                            Id = new Guid("999828b2-1ea4-41c6-9a1f-dc5953503732"),
                             NameAr = "طب الباطنة",
                             NameEn = "Internal Medicine"
                         },
                         new
                         {
-                            Id = new Guid("8d096843-cb36-43b5-af02-db19a5461e45"),
+                            Id = new Guid("b96986db-85bc-4928-a286-53954edff8b5"),
                             NameAr = "القلب والاوعية الدموية",
                             NameEn = "Cardiology"
                         },
                         new
                         {
-                            Id = new Guid("2a0dac61-5c29-419e-bbf6-7e7e65037b45"),
+                            Id = new Guid("e4dc585a-c7e7-41b4-9edb-ba1946cb9af1"),
                             NameAr = "نساء وتوليد",
                             NameEn = "Obstetrics and Gynecology"
                         },
                         new
                         {
-                            Id = new Guid("d3c6c631-71b1-440d-b0b1-3959bf1ee9aa"),
+                            Id = new Guid("b55737de-eca3-48db-a5f1-e4dcf5a80d01"),
                             NameAr = "طب العيون",
                             NameEn = "Ophthalmology"
                         },
                         new
                         {
-                            Id = new Guid("6ace6a84-cbab-4f1e-b134-4032915ea9b3"),
+                            Id = new Guid("dc035a1b-b3dd-4d7c-9f53-eb7498dd0b83"),
                             NameAr = "طب اطفال",
                             NameEn = "Pediatrics"
                         },
                         new
                         {
-                            Id = new Guid("e32fb559-660c-41f9-b60f-99d2dfe50b14"),
+                            Id = new Guid("fab108a2-5790-4fb3-8dd5-f5c7f393b660"),
                             NameAr = "طب الاعصاب",
                             NameEn = "Neurology"
                         },
                         new
                         {
-                            Id = new Guid("121122c6-8e62-4390-9fc0-b59c969291db"),
+                            Id = new Guid("75f2e9ca-c362-4a8f-9265-35cee3982015"),
                             NameAr = "طب الاورام",
                             NameEn = "Oncology"
                         },
                         new
                         {
-                            Id = new Guid("34162cd9-e86a-474a-ae0e-f21d42aaea21"),
+                            Id = new Guid("40f63d61-4b92-4c46-81c8-1a9c191dab0c"),
                             NameAr = "المسالك البولية",
                             NameEn = "Urology"
                         },
                         new
                         {
-                            Id = new Guid("bf069c11-6448-4165-b287-a99dc3e1a8fd"),
+                            Id = new Guid("8e3cb774-11ef-4560-9cb0-d9550941114b"),
                             NameAr = "جلدية",
                             NameEn = "Dermatology"
                         });
@@ -558,6 +636,25 @@ namespace Vezeeta.System.DAL.Migrations
                     b.Navigation("ApplicationUser");
                 });
 
+            modelBuilder.Entity("Vezeeta.System.DAL.PatientCoupon", b =>
+                {
+                    b.HasOne("Vezeeta.System.DAL.Coupon", "Coupon")
+                        .WithMany("PatientCoupons")
+                        .HasForeignKey("CouponId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Vezeeta.System.DAL.Patient", "Patient")
+                        .WithMany("PatientCoupons")
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Coupon");
+
+                    b.Navigation("Patient");
+                });
+
             modelBuilder.Entity("Vezeeta.System.DAL.Time", b =>
                 {
                     b.HasOne("Vezeeta.System.DAL.Appointment", "Appointment")
@@ -578,6 +675,11 @@ namespace Vezeeta.System.DAL.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Vezeeta.System.DAL.Coupon", b =>
+                {
+                    b.Navigation("PatientCoupons");
+                });
+
             modelBuilder.Entity("Vezeeta.System.DAL.Doctor", b =>
                 {
                     b.Navigation("Appointments");
@@ -586,6 +688,8 @@ namespace Vezeeta.System.DAL.Migrations
             modelBuilder.Entity("Vezeeta.System.DAL.Patient", b =>
                 {
                     b.Navigation("Bookings");
+
+                    b.Navigation("PatientCoupons");
                 });
 
             modelBuilder.Entity("Vezeeta.System.DAL.Specialization", b =>

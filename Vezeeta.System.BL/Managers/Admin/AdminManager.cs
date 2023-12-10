@@ -61,6 +61,8 @@ namespace Vezeeta.System.BL.Managers.Admin
                         Img = credentials.Img,
                         Name = credentials.Name,
                         Gender= credentials.Gender,
+                        Email = credentials.Email,
+                        Phone = credentials.Phone
                     };
 
                     // Add Doctor to the repository

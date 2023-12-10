@@ -15,6 +15,11 @@ public class DoctorsRepo : GenericReop<Doctor>,IDoctorsRepo
          _context = context;
     }
 
+    public int Count()
+    {
+        return _context.Doctors.Count();
+    }
+
     public IEnumerable<Doctor> GetAllDoctorsWithSettings()
     {
         return _context.Doctors

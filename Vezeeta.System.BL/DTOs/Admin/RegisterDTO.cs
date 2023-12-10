@@ -16,5 +16,6 @@ namespace Vezeeta.System.BL.DTOs.Admin
         public string Img { get; init; } = null!;
         public Guid SpecializationId { get; init; }
         public Gender Gender { get; init; }
+        public string Phone { get; init; } = null!;
     }
 }

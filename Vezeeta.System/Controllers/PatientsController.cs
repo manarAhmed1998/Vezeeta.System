@@ -38,10 +38,10 @@ namespace Vezeeta.System.APIs.Controllers
             return Ok(result);
         }
 
-        [HttpGet("GetDoctorsWithSettings")]
-        public ActionResult<List<DoctorWithSettingsReadDTO>>GetAllDoctors()
-        {
-            return _doctorsManager.GetDoctorsWithSettings().ToList();
-        }
+        //[HttpGet("GetDoctorsWithSettings")]
+        //public ActionResult<List<DoctorWithSettingsReadDTO>>GetAllDoctors()
+        //{
+        //    return _doctorsManager.GetDoctorsWithSettings().ToList();
+        //}
     }
 }

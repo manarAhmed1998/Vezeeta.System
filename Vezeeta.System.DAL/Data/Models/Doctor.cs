@@ -17,4 +17,8 @@ public class Doctor:User
     public Guid SpecializationId { get; set; }
     public Specialization Specialization { get; set; } = null!;
     public ICollection<Appointment>? Appointments { get; set; }
+    public Gender Gender { get; set; }  
+    public string Email { get;set; }
+    public string Phone { get; set; }
+
 }

@@ -97,6 +97,29 @@ namespace Vezeeta.System.DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AspNetUserClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier",
+                            ClaimValue = "admin",
+                            UserId = "d7d1c852-64c2-4b46-b430-113e0801bad6"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+                            ClaimValue = "Admin",
+                            UserId = "d7d1c852-64c2-4b46-b430-113e0801bad6"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
+                            ClaimValue = "admin@gmail.com",
+                            UserId = "d7d1c852-64c2-4b46-b430-113e0801bad6"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -225,16 +248,18 @@ namespace Vezeeta.System.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "89c8627b-f6f2-4fba-bee6-5b38b2f085bc",
+                            Id = "d7d1c852-64c2-4b46-b430-113e0801bad6",
                             AccessFailedCount = 0,
                             AccountType = 2,
-                            ConcurrencyStamp = "0372a19c-b1b5-4050-9635-9fe6f0b1e0b6",
+                            ConcurrencyStamp = "56f6f2d4-e156-4bb3-8bdf-a4572ba684af",
                             Email = "admin@gmail.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEL8PUIxoqXOTqu8jD/njrIQ7YvsGXe9+c11n1KIluhiKqCZ7w9zPxwdh8UHY+P0MGQ==",
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEE1F2GUlDVchZVjp0lKQoqdoxGc44Fu8npr9r4N/4X6woWsB8NOQmVbojfkibx4SzA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2c169ce2-1f0f-4c51-bdfd-3e1f4f28456b",
+                            SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -318,6 +343,10 @@ namespace Vezeeta.System.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
@@ -326,6 +355,10 @@ namespace Vezeeta.System.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -409,55 +442,55 @@ namespace Vezeeta.System.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c83627ea-5316-4c04-94e6-2fdc5ee6ae10"),
+                            Id = new Guid("999828b2-1ea4-41c6-9a1f-dc5953503732"),
                             NameAr = "طب الباطنة",
                             NameEn = "Internal Medicine"
                         },
                         new
                         {
-                            Id = new Guid("a8a4ca02-55cb-493a-a74c-5aa2a1ce7009"),
+                            Id = new Guid("b96986db-85bc-4928-a286-53954edff8b5"),
                             NameAr = "القلب والاوعية الدموية",
                             NameEn = "Cardiology"
                         },
                         new
                         {
-                            Id = new Guid("4892acfe-08c5-43e6-9ee0-7e56b6da7158"),
+                            Id = new Guid("e4dc585a-c7e7-41b4-9edb-ba1946cb9af1"),
                             NameAr = "نساء وتوليد",
                             NameEn = "Obstetrics and Gynecology"
                         },
                         new
                         {
-                            Id = new Guid("0e75a5f0-6991-4084-96f1-b1f1a9dfaa11"),
+                            Id = new Guid("b55737de-eca3-48db-a5f1-e4dcf5a80d01"),
                             NameAr = "طب العيون",
                             NameEn = "Ophthalmology"
                         },
                         new
                         {
-                            Id = new Guid("16fbb828-611b-47d9-b2d5-f927fd86cd13"),
+                            Id = new Guid("dc035a1b-b3dd-4d7c-9f53-eb7498dd0b83"),
                             NameAr = "طب اطفال",
                             NameEn = "Pediatrics"
                         },
                         new
                         {
-                            Id = new Guid("17a4a4f3-5e40-4729-a836-a3b19abbe2b5"),
+                            Id = new Guid("fab108a2-5790-4fb3-8dd5-f5c7f393b660"),
                             NameAr = "طب الاعصاب",
                             NameEn = "Neurology"
                         },
                         new
                         {
-                            Id = new Guid("2c00c4bf-a319-4b80-816d-c6104885df7a"),
+                            Id = new Guid("75f2e9ca-c362-4a8f-9265-35cee3982015"),
                             NameAr = "طب الاورام",
                             NameEn = "Oncology"
                         },
                         new
                         {
-                            Id = new Guid("5c53542d-3205-4f99-822d-fde2e2879058"),
+                            Id = new Guid("40f63d61-4b92-4c46-81c8-1a9c191dab0c"),
                             NameAr = "المسالك البولية",
                             NameEn = "Urology"
                         },
                         new
                         {
-                            Id = new Guid("32757065-c074-4bbe-8ec2-81bfe19ef19a"),
+                            Id = new Guid("8e3cb774-11ef-4560-9cb0-d9550941114b"),
                             NameAr = "جلدية",
                             NameEn = "Dermatology"
                         });
