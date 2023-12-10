@@ -8,4 +8,5 @@ namespace Vezeeta.System.DAL;
 
 public interface IPatientsRepo : IGenericRepo<Patient>
 {
+    int Count();
 }

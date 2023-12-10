@@ -30,10 +30,19 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
         {
             AccountType = AccountType.Admin,
             Email = "admin@gmail.com",
+            NormalizedEmail = "ADMIN@GMAIL.COM",
             UserName = "admin",
+            NormalizedUserName = "ADMIN",
+            PasswordHash = hasher.HashPassword(null, "Admin@123"),
+            SecurityStamp = string.Empty,
+            ConcurrencyStamp = Guid.NewGuid().ToString(),
         };
-        admin.PasswordHash = hasher.HashPassword(admin, "Admin@123");
         modelBuilder.Entity<ApplicationUser>().HasData(admin);
+        modelBuilder.Entity<IdentityUserClaim<string>>().HasData(
+        new IdentityUserClaim<string> { Id = 1, UserId = admin.Id, ClaimType = ClaimTypes.NameIdentifier, ClaimValue = admin.UserName },
+        new IdentityUserClaim<string> { Id = 2, UserId = admin.Id, ClaimType = ClaimTypes.Role, ClaimValue = admin.AccountType.ToString() },
+        new IdentityUserClaim<string> { Id = 3, UserId = admin.Id, ClaimType = ClaimTypes.Email, ClaimValue = admin.Email }
+    );
         //configuring keys
         //modelBuilder.Entity<Appointment>().HasKey(a => new { a.DoctorId, a.Day });
         modelBuilder.Entity<Time>().
@@ -54,10 +63,10 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
         modelBuilder.Entity<PatientCoupon>()
             .HasKey(pc => new { pc.PatientId, pc.CouponId });
 
-        modelBuilder.Entity<PatientCoupon>()
-            .HasOne(pc => pc.Patient)
-            .WithMany(p => p.PatientCoupons)
-            .HasForeignKey(pc => pc.PatientId);
+        //modelBuilder.Entity<PatientCoupon>()
+        //    .HasOne(pc => pc.Patient)
+        //    .WithMany(p => p.PatientCoupons)
+        //    .HasForeignKey(pc => pc.PatientId);
 
         modelBuilder.Entity<PatientCoupon>()
             .HasOne(pc => pc.Coupon)

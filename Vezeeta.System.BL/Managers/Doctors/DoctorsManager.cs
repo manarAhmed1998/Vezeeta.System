@@ -50,13 +50,11 @@ public class DoctorsManager : IDoctorsManager
         return true;
     }
 
-    public IEnumerable<DoctorWithSettingsReadDTO> GetDoctorsWithSettings()
-    {
-        var doctorsFromDb = _doctorsRepo.GetAllDoctorsWithSettings();
-        return null;
-
-
-    }
+    //public IEnumerable<DoctorWithSettingsReadDTO> GetDoctorsWithSettings()
+    //{
+    //    var doctorsFromDb = _doctorsRepo.GetAllDoctorsWithSettings();
+    //    return null;
+    //}
 
     private List<Time> MapDtoTimesToEntityTimes(List<TimeSlotDTO> timeSlotsDto, Guid appointmentId, Guid doctorId)
     {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using Vezeeta.System.BL;
@@ -33,6 +34,7 @@ namespace Vezeeta.System.APIs.Controllers
             return Ok(result);
         }
         [HttpPost("AddSetting/Id")]
+        [Authorize (Policy ="Doctor")]
         public ActionResult<bool> AddSetting(Guid Id, [FromBody]AddSettingDTO settings)
         {
             var result = _manager.AddSetting(Id, settings);

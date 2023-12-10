@@ -9,5 +9,5 @@ namespace Vezeeta.System.DAL;
 public interface IDoctorsRepo : IGenericRepo<Doctor>
 {
     IEnumerable<Doctor> GetAllDoctorsWithSettings();
-
+    int Count();
 }

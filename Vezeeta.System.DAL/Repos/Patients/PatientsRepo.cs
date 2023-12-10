@@ -6,11 +6,16 @@ using System.Threading.Tasks;
 
 namespace Vezeeta.System.DAL;
 
-public class PatientsRepo:GenericReop<Patient>,IPatientsRepo
+public class PatientsRepo : GenericReop<Patient>, IPatientsRepo
 {
     private readonly VezeetaContext _context;
-    public PatientsRepo(VezeetaContext context):base(context)
+    public PatientsRepo(VezeetaContext context) : base(context)
     {
         _context = context;
+    }
+
+    public int Count()
+    {
+        return _context.Patients.Count();
     }
 }
