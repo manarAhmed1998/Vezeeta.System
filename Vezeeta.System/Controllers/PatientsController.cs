@@ -32,5 +32,11 @@ namespace Vezeeta.System.APIs.Controllers
                 return Unauthorized("Username or password isn't correct");
             return Ok(result);
         }
+
+        [HttpGet("GetDoctors")]
+        public ActionResult<List<DoctorReadDTO>>GetAllDoctors()
+        {
+            return _patientsManager.GetDoctors().ToList();
+        }
     }
 }

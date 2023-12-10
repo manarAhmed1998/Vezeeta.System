@@ -10,4 +10,5 @@ namespace Vezeeta.System.BL;
 public interface IPatientsManager
 {
     Task<bool> AddPatient(AddPatientDTO credentials);
+    IEnumerable<DoctorReadDTO> GetDoctors();
 }

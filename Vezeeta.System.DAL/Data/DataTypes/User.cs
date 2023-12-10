@@ -12,4 +12,5 @@ public abstract class User
     public string? Img { get; set; }
     public string Name { get; set; } = string.Empty;
     public AccountType AccountType { get; set; }
+    public Gender Gender { get; set; }
 }
