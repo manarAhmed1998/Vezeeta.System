@@ -12,8 +12,8 @@ using Vezeeta.System.DAL;
 namespace Vezeeta.System.DAL.Migrations
 {
     [DbContext(typeof(VezeetaContext))]
-    [Migration("20231208230608_changeTimeType")]
-    partial class changeTimeType
+    [Migration("20231210000456_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -224,6 +224,23 @@ namespace Vezeeta.System.DAL.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "89c8627b-f6f2-4fba-bee6-5b38b2f085bc",
+                            AccessFailedCount = 0,
+                            AccountType = 2,
+                            ConcurrencyStamp = "0372a19c-b1b5-4050-9635-9fe6f0b1e0b6",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAIAAYagAAAAEL8PUIxoqXOTqu8jD/njrIQ7YvsGXe9+c11n1KIluhiKqCZ7w9zPxwdh8UHY+P0MGQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "2c169ce2-1f0f-4c51-bdfd-3e1f4f28456b",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("Vezeeta.System.DAL.Appointment", b =>
@@ -240,7 +257,8 @@ namespace Vezeeta.System.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DoctorId");
+                    b.HasIndex("DoctorId", "Day")
+                        .IsUnique();
 
                     b.ToTable("Appointments");
                 });
@@ -286,9 +304,6 @@ namespace Vezeeta.System.DAL.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
 
                     b.Property<Guid>("SpecializationId")
                         .HasColumnType("uniqueidentifier");
@@ -352,55 +367,55 @@ namespace Vezeeta.System.DAL.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("54de9711-e5c7-46ce-8099-09faac82c09f"),
+                            Id = new Guid("249c5944-6233-4677-be1f-7f5cd1849e80"),
                             NameAr = "طب الباطنة",
                             NameEn = "Internal Medicine"
                         },
                         new
                         {
-                            Id = new Guid("e54912c5-54f0-4dbf-afdc-b3c5d2ee58d7"),
+                            Id = new Guid("8d096843-cb36-43b5-af02-db19a5461e45"),
                             NameAr = "القلب والاوعية الدموية",
                             NameEn = "Cardiology"
                         },
                         new
                         {
-                            Id = new Guid("410ef534-8ce4-4d33-a350-8efc2dbce96f"),
+                            Id = new Guid("2a0dac61-5c29-419e-bbf6-7e7e65037b45"),
                             NameAr = "نساء وتوليد",
                             NameEn = "Obstetrics and Gynecology"
                         },
                         new
                         {
-                            Id = new Guid("47103274-8fb5-495d-880b-7130ea13ced0"),
+                            Id = new Guid("d3c6c631-71b1-440d-b0b1-3959bf1ee9aa"),
                             NameAr = "طب العيون",
                             NameEn = "Ophthalmology"
                         },
                         new
                         {
-                            Id = new Guid("bbb88d4e-5d8f-419f-9978-fab8a52522b6"),
+                            Id = new Guid("6ace6a84-cbab-4f1e-b134-4032915ea9b3"),
                             NameAr = "طب اطفال",
                             NameEn = "Pediatrics"
                         },
                         new
                         {
-                            Id = new Guid("26017fcd-8f95-4b68-b305-d11394713803"),
+                            Id = new Guid("e32fb559-660c-41f9-b60f-99d2dfe50b14"),
                             NameAr = "طب الاعصاب",
                             NameEn = "Neurology"
                         },
                         new
                         {
-                            Id = new Guid("2bb37d32-95e0-40ae-a280-417c6ce86dce"),
+                            Id = new Guid("121122c6-8e62-4390-9fc0-b59c969291db"),
                             NameAr = "طب الاورام",
                             NameEn = "Oncology"
                         },
                         new
                         {
-                            Id = new Guid("27b04ccf-105e-4030-892a-2f8fdae6972b"),
+                            Id = new Guid("34162cd9-e86a-474a-ae0e-f21d42aaea21"),
                             NameAr = "المسالك البولية",
                             NameEn = "Urology"
                         },
                         new
                         {
-                            Id = new Guid("843bd4b9-10ff-4cb4-82db-1512010f1bed"),
+                            Id = new Guid("bf069c11-6448-4165-b287-a99dc3e1a8fd"),
                             NameAr = "جلدية",
                             NameEn = "Dermatology"
                         });
