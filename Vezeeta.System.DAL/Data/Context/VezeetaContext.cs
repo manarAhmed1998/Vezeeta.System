@@ -16,7 +16,6 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
     public DbSet<PatientCoupon>PatientCoupons =>Set<PatientCoupon>();
 
     //ctor for recerving options [generic if we are using A multi-tenant application ]
-    private readonly UserManager<ApplicationUser> _manager;
     public VezeetaContext(DbContextOptions<VezeetaContext> options) : base(options)
     {
     }
@@ -40,7 +39,7 @@ public class VezeetaContext:IdentityDbContext<ApplicationUser>
         modelBuilder.Entity<ApplicationUser>().HasData(admin);
         modelBuilder.Entity<IdentityUserClaim<string>>().HasData(
         new IdentityUserClaim<string> { Id = 1, UserId = admin.Id, ClaimType = ClaimTypes.NameIdentifier, ClaimValue = admin.UserName },
-        new IdentityUserClaim<string> { Id = 2, UserId = admin.Id, ClaimType = ClaimTypes.Role, ClaimValue = admin.AccountType.ToString() },
+        new IdentityUserClaim<string> { Id = 2, UserId = admin.Id, ClaimType = ClaimTypes.Role, ClaimValue = admin.AccountType.ToString()},
         new IdentityUserClaim<string> { Id = 3, UserId = admin.Id, ClaimType = ClaimTypes.Email, ClaimValue = admin.Email }
     );
         //configuring keys

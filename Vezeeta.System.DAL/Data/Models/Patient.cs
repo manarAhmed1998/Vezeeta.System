@@ -10,5 +10,4 @@ public class Patient:User
     public ApplicationUser ApplicationUser { get; set; } = null!;
     public ICollection<Booking>? Bookings { get; set; }
     public ICollection<PatientCoupon>? PatientCoupons { get; set; }
-    public Gender Gender {  get; set; }
 }

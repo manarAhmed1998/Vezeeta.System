@@ -15,7 +15,6 @@ public class PatientsManager:IPatientsManager
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly UserManager<ApplicationUser> _userManager;
-    private readonly IDoctorsRepo _doctorsRepo;
 
     public PatientsManager(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
     {

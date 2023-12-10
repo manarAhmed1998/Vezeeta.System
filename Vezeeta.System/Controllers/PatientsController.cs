@@ -14,7 +14,6 @@ namespace Vezeeta.System.APIs.Controllers
     {
         private readonly ILoginService _loginService;
         private readonly IPatientsManager _patientsManager;
-        private readonly IDoctorsManager _doctorsManager;
 
         public PatientsController(ILoginService loginService,
             IPatientsManager patientsManager,
