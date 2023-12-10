@@ -21,6 +21,16 @@ public class PatientsManager:IPatientsManager
         _userManager = userManager;
     }
 
+    public IEnumerable<DoctorReadDTO> GetDoctors()
+    {
+        var doctorsFromDb=_unitOfWork.DoctorsRepo.GetAll();
+        return doctorsFromDb.Select(doctor => new DoctorReadDTO
+        {
+            Name = doctor.Name,
+            Img= doctor.Img,
+            Gender = doctor.Gender,
+        });
+    }
     public async Task<bool> AddPatient(AddPatientDTO credentials)
     {
         var user = new ApplicationUser
